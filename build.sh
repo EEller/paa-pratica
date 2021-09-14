@@ -1,0 +1,1 @@
+g++ -std=c++11 -o dist/app src/functions/*.cpp src/*.cpp && ./dist/app
