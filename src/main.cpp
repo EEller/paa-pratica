@@ -18,6 +18,8 @@ int main() {
     selection(v);
     std::cout << "Search sequential\n";
     sequential(v);
+    std::cout << "Brute Force String Match\n";
+    std::cout << BruteForceStringMatch("NOBODY_NOTICED_HIM", "NOT") << std::endl;
 
     return 0;
 }
