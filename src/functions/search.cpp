@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <list>
+#include "common.h"
+using namespace common;
 
 namespace search {
 
@@ -46,5 +49,31 @@ namespace search {
     }
 
     return -1;
+  }
+
+  std::vector<int> getNeighbors(int node, std::vector< std::vector<int> > G) {
+    return G[node];
+  }
+
+  std::list<int> dfs(int s, std::vector< std::vector<int> > G) {
+    std::list<int> start({ s });
+    std::list< std::list<int> > frontier({ start });
+
+    while (!frontier.empty()) {
+      std::list<int> path(frontier.back());
+      frontier.pop_back();
+
+      if (path.back() == 9) {
+        return path;
+      } else {
+        for (auto e : getNeighbors(path.back(), G)) {
+          std::list<int> new_path(path);
+          new_path.push_back(e);
+          frontier.push_back(new_path);
+        }
+      }
+    }
+
+    return start;
   }
 }

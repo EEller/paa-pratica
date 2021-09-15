@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <list>
 #include "functions/common.h"
 #include "functions/search.h"
 #include "functions/sort.h"
@@ -11,6 +12,18 @@ int main() {
     std::vector<int> v = { 89, 45, 68, 90, 29, 34, 17 };
     std::cout << "Entrada\n";
     printVector(v);
+    std::vector<std::vector<int> > G ({
+        {1,2},
+        {3,4},
+        {5},
+        {},
+        {},
+        {6,7},
+        {8},
+        {},
+        {9},
+        {}
+    });
 
     std::cout << "Bubble\n";
     bubble(v);
@@ -20,6 +33,9 @@ int main() {
     sequential(v);
     std::cout << "Brute Force String Match\n";
     std::cout << BruteForceStringMatch("NOBODY_NOTICED_HIM", "NOT") << std::endl;
+    std::cout << "DFS\n";
+    std::list<int> pathdfs = dfs(0, G);
+    printList(pathdfs);
 
     return 0;
 }
