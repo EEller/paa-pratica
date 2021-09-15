@@ -36,6 +36,8 @@ int main() {
     std::cout << "DFS\n";
     std::list<int> pathdfs = dfs(0, G);
     printList(pathdfs);
+    std::cout << "insertionSort\n";
+    insertionSort(v);
 
     return 0;
 }

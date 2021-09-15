@@ -36,4 +36,21 @@ namespace sort {
 
     printVector(a);
   }
+
+  //Sorts a given array by insertion sort
+  //Input: an array A[0..n-1] of n orderable elements
+  //Output: Array A[0..n-1] sorted in nondecreasing order
+  void insertionSort(std::vector<int> v) {
+    int x, y;
+    for (int i = 1; i < v.size(); i++) {
+      x = v[i];
+      y = i - 1;
+      while((y>=0) && (v[y]>x)) {
+        v[y+1] = v[y];
+        y= y - 1;
+        v[y+1] = x;
+      }
+    }
+    printVector(v);
+  }
 }
