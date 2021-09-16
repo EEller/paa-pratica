@@ -76,4 +76,30 @@ namespace search {
 
     return start;
   }
+
+  //Implements nonrecursive binary search
+  //Input: An array A[0..n-1] sorted in ascending order and a search key K
+  //Output: An index of the array's element that is equal to k or -1 if
+  //        ther is no such element
+  int bynarySearch(int k, std::vector<int> v) {
+    int l = 0;
+    int r = v.size() - 1;
+    int m;
+    while(l<=r) {
+      m = (l + r)/2;
+      std::cout << l << " - " << m << " - " << r << std::endl;
+      if (k == v[m]) {
+        return m;
+      } else if (k < v[m]) {
+        r = m - 1;
+      } else {
+        l = m + 1;
+      }
+    }
+
+    return -1;
+  }
+
+  //TODO:
+  //Implements recursive binary search algorithm.
 }

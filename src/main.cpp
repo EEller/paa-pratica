@@ -38,6 +38,9 @@ int main() {
     printList(pathdfs);
     std::cout << "insertionSort\n";
     insertionSort(v);
+    std::vector<int> b = { 3, 14, 27, 31, 39, 42, 55, 70, 74, 81, 85,93, 98 };
+    int indice = bynarySearch(70, b);
+    std::cout << indice << std::endl;
 
     return 0;
 }
