@@ -4,9 +4,11 @@
 #include "functions/common.h"
 #include "functions/search.h"
 #include "functions/sort.h"
+#include "functions/problems.h"
 using namespace common;
 using namespace search;
 using namespace sort;
+using namespace problems;
 
 int main() {
     std::vector<int> v = { 89, 45, 68, 90, 29, 34, 17 };
@@ -41,6 +43,9 @@ int main() {
     std::vector<int> b = { 3, 14, 27, 31, 39, 42, 55, 70, 74, 81, 85,93, 98 };
     int indice = bynarySearch(70, b);
     std::cout << indice << std::endl;
+    std::vector<int> coins = {1, 1, 1, 0, 1, 1, 1, 1};
+    std::cout << "Fake Coin" << std::endl;
+    fakeCoin(coins);
 
     return 0;
 }
