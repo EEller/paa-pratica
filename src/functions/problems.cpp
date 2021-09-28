@@ -7,6 +7,7 @@
 using namespace common;
 
 namespace problems {
+  const int K = 3;
 
   std::vector<int> insertBalance(std::vector<int> v, int init, int end) {
     std::vector<int> a;
@@ -28,7 +29,7 @@ namespace problems {
   }
 
   int getFactor(int l) {
-    return l / 2;
+    return l % K;
   }
 
   void fakeCoin(std::vector<int> c) {
@@ -40,9 +41,17 @@ namespace problems {
       return;
     }
 
-    int limit = getFactor(c.size());
+    int f = getFactor(c.size());
+    int limit;
+    if (f == 0 ) {
+      limit = c.size() / K;
+    } else {
+      limit = ((c.size() - f) / K) + 1;
+    }
+
     std::vector<int> bl = insertBalance(c, 0, limit);
-    std::vector<int> br = insertBalance(c, limit, c.size());
+    std::vector<int> br = insertBalance(c, limit, 2*limit);
+    std::vector<int> bo = insertBalance(c, 2*limit, c.size());
     int wL = getWeight(bl);
     int wR = getWeight(br);
 
@@ -54,9 +63,7 @@ namespace problems {
     } else if (wL > wR) {
       fakeCoin(br);
     } else if (wL == wR) {
-      std::cout << "Não existe uma moeda falsa" << std::endl;
-
-      return;
+      fakeCoin(bo);
     }
   }
 
