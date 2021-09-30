@@ -102,4 +102,32 @@ namespace search {
 
   //TODO:
   //Implements recursive binary search algorithm.
+
+  //Implements interpolation Search method.
+  int interpolationSearch(int searchValue, std::vector<int> v, int init, int end) {
+    std::cout << "init " << init << std::endl;
+    std::cout << "end " << end << std::endl;
+
+    int l = v.size();
+    int pos;
+
+    if(init <= end && searchValue >= v[init] && searchValue <= v[end]) {
+      pos = init +
+            (((double)(end - init) / (v[end] - v[init]))
+              * (searchValue - v[init]));
+      std::cout << "pos " << pos << std::endl;
+
+      if (v[pos] == searchValue)
+        return pos;
+
+      if (v[pos] < searchValue)
+        return interpolationSearch(searchValue, v, pos + 1, end);
+
+      if (v[pos] > searchValue)
+        return interpolationSearch(searchValue, v, init, pos -1);
+
+    }
+
+    return -1;
+  };
 }
