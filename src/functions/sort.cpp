@@ -53,4 +53,53 @@ namespace sort {
     }
     printVector(v);
   }
+
+  std::vector<int> mergeSort(std::vector<int> v) {
+    std::cout << "Split ---> ";
+    printVector(v);
+
+    if (v.size() > 1) {
+      int mid = v.size()/ 2;
+
+      //a call stack trabalha primeiro os elementos da esquerda e posteriormente os da direita.
+      std::vector<int> esq(v.begin(), v.begin()+mid);
+      std::vector<int> dir(v.begin()+mid, v.begin()+v.size());
+
+      esq = mergeSort(esq);
+      dir = mergeSort(dir);
+
+      unsigned i = 0;
+      unsigned j = 0;
+      unsigned k = 0;
+      //para não fazer um for encadeado, usou-se o while.
+      while (i < esq.size() && j < dir.size()) {
+        //após o caso base, o recursivo faz uma comparação do maior e menor
+        if (esq[i] < dir[j]) {
+          v[k]=esq[i];
+          i++;
+        } else {
+          v[k] = dir[j];
+          j++;
+        }
+        k++;
+      }
+
+      while (i<esq.size()) {
+        v[k] = esq[i];
+        i++;
+        k++;
+      }
+
+      while (j<dir.size()) {
+        v[k]=dir[j];
+        j++;
+        k++;
+      }
+    }
+
+    std::cout << "Merge ---> ";
+    printVector(v);
+
+    return v;
+  }
 }
