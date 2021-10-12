@@ -102,4 +102,42 @@ namespace sort {
 
     return v;
   }
+
+  int partition (std::vector<int> &v, int f, int l) {
+    int pivot = v[f];
+    int right = l;
+    int left = f+1;
+    bool done = false;
+
+    while (!done) {
+      while (left<=right && v[left]<=pivot) {
+        left++;
+      }
+
+      while (right>=left && v[right]>=pivot) {
+        right--;
+      }
+
+      if(right<left) {
+        done = true;
+      } else {
+        std::swap(v[right], v[left]);
+      }
+    }
+
+    std::swap(v[right], v[f]);
+
+    return right;
+  }
+
+  void quickSort(std::vector<int> &v, int f, int l) {
+    int splitPoint;
+
+    if (f < l) {
+      splitPoint = partition(v, f, l);
+
+      quickSort(v, f, splitPoint);
+      quickSort(v, splitPoint+1, l);
+    }
+  }
 }
